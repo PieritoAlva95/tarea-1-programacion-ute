@@ -3,6 +3,6 @@ import { createContactController } from "../controllers/create_contact_controlle
 
 const router = Router();
 
-router.post("/user", createContactController);
+router.post("/contact", createContactController);
 
 export default router;

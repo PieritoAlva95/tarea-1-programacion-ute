@@ -6,7 +6,7 @@ const ContactSchema = new Schema(
     names: { type: String },
     lastNames: { type: String },
     phoneNumber: { type: String },
-    email: { type: String },
+    email: { type: String, unique: true },
   },
   { timestamps: true }
 );
