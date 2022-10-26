@@ -26,8 +26,9 @@ export class ContactService {
     return contactUpdated;
   }
 
-  deleteContactById(uuid: string): boolean {
-    const isContactDeleted: boolean = this.contactRepository.delete(uuid);
+  deleteContactById(uuid: string): Promise<boolean> {
+    const isContactDeleted: Promise<boolean> =
+      this.contactRepository.delete(uuid);
     return isContactDeleted;
   }
 }
