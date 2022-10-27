@@ -10,4 +10,6 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=Development
+      - MONGO_USER=Piero95
+      - MONGO_PASSWORD=j95p250a
     command: yarn run dev
