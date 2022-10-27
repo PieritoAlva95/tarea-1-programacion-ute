@@ -31,4 +31,9 @@ export class ContactService {
       this.contactRepository.delete(uuid);
     return isContactDeleted;
   }
+
+  findContactList(): Promise<Contact[]> {
+    const contactList: Promise<Contact[]> = this.contactRepository.find();
+    return contactList;
+  }
 }

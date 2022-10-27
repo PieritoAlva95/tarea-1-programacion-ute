@@ -1,5 +1,5 @@
 import "dotenv/config";
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import contactRouter from "../src/features/contacts/infrastructure/routes/contact_routes";
 import { initMongoDataBase } from "./core/database/mongo-db";
@@ -12,11 +12,18 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/api", contactRouter);
+app.use("/api/v1", contactRouter);
 
 // Init Server
 app.listen(env_vars.APP_PORT, () => {
   console.log(`Server running on http:localhost:${env_vars.APP_PORT}!`);
+});
+
+app.get("/", (_req: Request, res: Response) => {
+  res.status(200).json({
+    status: "Succes",
+    msg: "The server is running normally!",
+  });
 });
 
 //Data Bases

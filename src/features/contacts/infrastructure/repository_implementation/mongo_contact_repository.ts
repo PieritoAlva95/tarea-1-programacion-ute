@@ -1,40 +1,32 @@
 import { Contact } from "../../domain/entities/contact";
 import { ContactRepository } from "../../domain/repositories/contact_repository";
-
-const MOCK_CONTACT = {
-  contactId: "0000-0000-0000",
-  names: "Names Mock",
-  lastNames: "Apellidos Mock",
-  phoneNumber: "0999081750",
-  email: "mock@gmail.com",
-};
+import ContactModel from "../models/contact.schema";
 
 export class MongoContactRepository implements ContactRepository {
-  public create = async (contact: Contact): Promise<Contact> => {
-    console.log("MongoContactRepository => create()");
-    const contactCreated = MOCK_CONTACT;
+  public create = async (contact: Contact): Promise<any> => {
+    const contactCreated = await ContactModel.create(contact);
     return contactCreated;
   };
 
-  public get = async (uuid: string): Promise<Contact | null> => {
-    console.log("MongoContactRepository => get()");
-    const contactGeted = MOCK_CONTACT;
+  public get = async (uuid: string): Promise<any> => {
+    const contactGeted = await ContactModel.findById(uuid);
     return contactGeted;
   };
 
-  public update = async (uuid: string, contact: Contact): Promise<Contact> => {
-    console.log("MongoContactRepository => update()");
-    const contactUpdated = MOCK_CONTACT;
+  public update = async (uuid: string, contact: Contact): Promise<any> => {
+    const contactUpdated = await ContactModel.findByIdAndUpdate(uuid, contact, {
+      new: true,
+    });
     return contactUpdated;
   };
 
-  public delete = async (uuid: string): Promise<boolean> => {
-    console.log("MongoContactRepository => delete()");
-    const contactDeleted = MOCK_CONTACT;
-    return true;
+  public delete = async (uuid: string): Promise<any> => {
+    const contactDeleted = await ContactModel.findByIdAndDelete(uuid);
+    return contactDeleted;
   };
 
-  public find = async (): Promise<Contact[]> => {
-    throw new Error("Method not implemented.");
+  public find = async (): Promise<any> => {
+    const contactList = await ContactModel.find();
+    return contactList;
   };
 }
