@@ -1,0 +1,13 @@
+version: "3"
+services:
+  notes-app-container:
+    build:
+      context: .
+      args: 
+        NODE_ENV: development
+    volumes:
+      - ./build/src:/app/src:ro
+      - /app/node_modules
+    environment:
+      - NODE_ENV=Development
+    command: yarn run dev

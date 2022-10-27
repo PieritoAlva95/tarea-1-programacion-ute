@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import contactRouter from "../src/features/contacts/infrastructure/routes/contact_routes";
+import { initMongoDataBase } from "./core/database/mongo-db";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -14,5 +15,8 @@ app.use(express.json());
 app.use("/api", contactRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server running on http:localhost:${PORT}`);
+  console.log(`Server running on http:localhost:${PORT}!`);
 });
+
+//Data Bases
+initMongoDataBase();

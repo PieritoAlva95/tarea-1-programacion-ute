@@ -1,0 +1,17 @@
+version: "3"
+services:
+  notes-app-container:
+    build: .
+    ports: 
+      - "3000:3000"
+  
+  mongo-container:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=Piero95
+      - MONGO_INITDB_ROOT_PASSWORD=j95p250a
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:

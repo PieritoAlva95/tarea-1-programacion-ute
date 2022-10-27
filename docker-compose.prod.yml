@@ -1,0 +1,10 @@
+version: "3"
+services:
+  notes-app-container:
+    build:
+      context: .
+      args: 
+        NODE_ENV: production
+    environment:
+      - NODE_ENV=Production
+    command: yarn run start
