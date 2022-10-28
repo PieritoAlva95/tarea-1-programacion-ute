@@ -19,7 +19,8 @@ app.listen(env_vars.APP_PORT, () => {
   console.log(`Server running on http:localhost:${env_vars.APP_PORT}!`);
 });
 
-app.get("/", (_req: Request, res: Response) => {
+// Health route
+app.get("/", (_: Request, res: Response) => {
   res.status(200).json({
     status: "Succes",
     msg: "The server is running normally!",
