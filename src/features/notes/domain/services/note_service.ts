@@ -1,4 +1,4 @@
-import { Note } from "../entities/notes";
+import { Note } from "../entities/note";
 import { NoteRepository } from "../repositories/note_repository";
 
 export class NoteService {
@@ -32,9 +32,9 @@ export class NoteService {
     return isNoteDeleted;
   }
 
-  findNotesByUserId(uuid: string): Promise<Note[]> {
+  findNotesByContactId(uuid: string): Promise<Note[]> {
     const notesListFinded: Promise<Note[]> =
-      this.noteRepository.findNotesByUserId(uuid);
+      this.noteRepository.findNotesByContactId(uuid);
     return notesListFinded;
   }
 
