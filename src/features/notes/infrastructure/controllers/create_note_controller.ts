@@ -10,7 +10,7 @@ export const createNoteController = async (req: Request, res: Response) => {
     const response = await noteCreator.execute(req.body);
     res.status(200).json({
       status: "Succes",
-      noteCreated: response,
+      note_created: response,
     });
   } catch (error) {
     res.status(500).json({

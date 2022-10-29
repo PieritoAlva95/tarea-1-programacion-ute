@@ -1,28 +1,28 @@
 import { Request, Response } from "express";
 import { noteServiceFactory } from "../../../../core/dependecy_injection/service_factory";
-import { NoteGetter } from "../../application/use_cases/note_getter";
+import { NoteUpdater } from "../../application/use_cases/note_updater";
 import { NoteService } from "../../domain/services/note_service";
 
-export const getNoteController = async (req: Request, res: Response) => {
+export const updateNoteController = async (req: Request, res: Response) => {
   try {
     const noteService: NoteService = noteServiceFactory();
-    const noteGetter: NoteGetter = new NoteGetter(noteService);
-    const response = await noteGetter.execute(req.params.id);
+    const noteUpdater: NoteUpdater = new NoteUpdater(noteService);
+    const response = await noteUpdater.execute(req.params.id, req.body);
     if (!response) {
       res.status(404).json({
         status: "Fail",
-        error_msg: "The note does not exist!",
+        error_msg: "The note to be updated does not exist!",
       });
       return;
     }
     res.status(200).json({
       status: "Succes",
-      note_finded: response,
+      note_updated: response,
     });
   } catch (error) {
     res.status(500).json({
       status: "Fail",
-      errorMsg: error,
+      error_msg: error,
     });
   }
 };
