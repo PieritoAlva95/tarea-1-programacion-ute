@@ -6,4 +6,5 @@ export interface ContactRepository {
   update(uuid: string, contact: Contact): Promise<Contact>;
   delete(uuid: string): Promise<boolean>;
   find(): Promise<Contact[]>;
+  signIn(email: string): Promise<Contact>;
 }

@@ -7,7 +7,13 @@ export const createNoteController = async (req: Request, res: Response) => {
   try {
     const noteService: NoteService = noteServiceFactory();
     const noteCreator: NoteCreator = new NoteCreator(noteService);
-    const response = await noteCreator.execute(req.body);
+    const { title, body } = req.body;
+    const response = await noteCreator.execute({
+      contactId: req.session.user!._id,
+      title,
+      body,
+    });
+    console.log(`session ID: ${req.session}`);
     res.status(200).json({
       status: "Succes",
       note_created: response,

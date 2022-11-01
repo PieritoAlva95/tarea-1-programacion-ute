@@ -36,4 +36,10 @@ export class ContactService {
     const contactList: Promise<Contact[]> = this.contactRepository.find();
     return contactList;
   }
+
+  contactSignIn(email: string): Promise<Contact> {
+    const contactLogged: Promise<Contact> =
+      this.contactRepository.signIn(email);
+    return contactLogged;
+  }
 }

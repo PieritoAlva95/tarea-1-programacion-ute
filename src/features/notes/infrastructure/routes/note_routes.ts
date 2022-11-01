@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { protect } from "../../../../core/shared/middlewares/auth_middleware";
 import { createNoteController } from "../controllers/create_note_controller";
 import { deleteNoteController } from "../controllers/delete_note_controller";
 import { findNotesByContactIdController } from "../controllers/find_notes_by_contact_id_controller";
@@ -8,11 +9,11 @@ import { updateNoteController } from "../controllers/update_note_controller";
 
 const router = Router();
 
-router.post("/notes", createNoteController);
-router.get("/notes", findNoteListController);
-router.get("/notes/:id", getNoteController);
-router.get("/contact-notes", findNotesByContactIdController);
-router.put("/notes/:id", updateNoteController);
-router.delete("/notes/:id", deleteNoteController);
+router.post("/notes", protect, createNoteController);
+router.get("/notes", protect, findNoteListController);
+router.get("/notes/:id", protect, getNoteController);
+router.get("/contact-notes", protect, findNotesByContactIdController);
+router.put("/notes/:id", protect, updateNoteController);
+router.delete("/notes/:id", protect, deleteNoteController);
 
 export default router;

@@ -3,6 +3,11 @@ import { ContactRepository } from "../../domain/repositories/contact_repository"
 import ContactModel from "../models/contact.schema";
 
 export class MongoContactRepository implements ContactRepository {
+  public signIn = async (email: string): Promise<any> => {
+    const contactSignIn = await ContactModel.findOne({ email: email });
+    return contactSignIn;
+  };
+
   public create = async (contact: Contact): Promise<any> => {
     const contactCreated = await ContactModel.create(contact);
     return contactCreated;
