@@ -6,7 +6,10 @@ const NoteSchema = new Schema(
     title: { require: true, type: String },
     body: { require: true, type: String },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    versionKey: false,
+  }
 );
 
 const NoteModel = model("Note", NoteSchema);

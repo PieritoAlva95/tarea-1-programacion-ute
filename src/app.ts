@@ -1,10 +1,14 @@
 import "dotenv/config";
-import express, { Request, Response } from "express";
+import path from "path";
+import express, { NextFunction, Request, Response } from "express";
+import bodyParser from "body-parser";
 import cors from "cors";
-import contactRouter from "../src/features/contacts/infrastructure/routes/contact_routes";
-import noteRouter from "../src/features/notes/infrastructure/routes/note_routes";
+import contactRouter from "./features/contacts/infrastructure/routes/contact_routes";
+import noteRouter from "./features/notes/infrastructure/routes/note_routes";
 import { initMongoDataBase } from "./core/database/mongo-db";
 import { env_vars } from "./core/config/env_vars";
+
+// Redis Sessions
 import session from "express-session";
 const RedisStore = require("connect-redis")(session);
 import { createClient } from "redis";
@@ -19,13 +23,12 @@ redisClient.connect().catch(console.error);
 
 const app = express();
 
-// Middlewares
 app.use(
   session({
     store: new RedisStore({ client: redisClient }),
     secret: env_vars.SESSION_SECRET!,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
       secure: false,
       httpOnly: true,
@@ -34,6 +37,8 @@ app.use(
   })
 );
 
+// Middlewares
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 

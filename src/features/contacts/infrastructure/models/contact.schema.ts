@@ -8,7 +8,10 @@ const ContactSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    versionKey: false,
+  }
 );
 
 const ContactModel = model("Contact", ContactSchema);

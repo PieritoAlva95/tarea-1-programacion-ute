@@ -13,7 +13,6 @@ export const createNoteController = async (req: Request, res: Response) => {
       title,
       body,
     });
-    console.log(`session ID: ${req.session}`);
     res.status(200).json({
       status: "Succes",
       note_created: response,
