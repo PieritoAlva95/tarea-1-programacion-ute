@@ -3,12 +3,8 @@ import { contactServiceFactory } from "../../../../core/dependecy_injection/serv
 import { ContactSignIn } from "../../application/use_cases/contact_sign_in";
 import { ContactService } from "../../domain/services/contact_service";
 import bcrypt from "bcrypt";
-
-declare module "express-session" {
-  export interface SessionData {
-    user: { [key: string]: any };
-  }
-}
+import jwt from "jsonwebtoken";
+import { env_vars } from "../../../../core/config/env_vars";
 
 export const signInContactController = async (req: Request, res: Response) => {
   try {
@@ -31,10 +27,10 @@ export const signInContactController = async (req: Request, res: Response) => {
       });
       return;
     }
-    req.session.user = response;
+    const tokenCreated = jwt.sign({ response }, env_vars.TOKEN_SECRET!);
     res.status(200).json({
       status: "Succes",
-      contact_logged: response,
+      token: tokenCreated,
     });
   } catch (error) {
     res.status(500).json({

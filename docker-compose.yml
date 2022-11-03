@@ -14,9 +14,6 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=j95p250a
     volumes:
       - mongo-db:/data/db
-  
-  redis:
-    image: redis
 
 volumes:
   mongo-db:

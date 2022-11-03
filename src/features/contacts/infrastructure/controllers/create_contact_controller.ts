@@ -3,6 +3,8 @@ import { contactServiceFactory } from "../../../../core/dependecy_injection/serv
 import { ContactCreator } from "../../application/use_cases/contact_creator";
 import { ContactService } from "../../domain/services/contact_service";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { env_vars } from "../../../../core/config/env_vars";
 
 export const createContactController = async (req: Request, res: Response) => {
   try {
@@ -17,10 +19,10 @@ export const createContactController = async (req: Request, res: Response) => {
       email,
       password: hashPassword,
     });
-    req.session.user = response;
+    const tokenCreated = jwt.sign({ response }, env_vars.TOKEN_SECRET!);
     res.status(200).json({
       status: "Succes",
-      contact_created: response,
+      token: tokenCreated,
     });
   } catch (error) {
     res.status(400).json({

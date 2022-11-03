@@ -7,9 +7,9 @@ export const createNoteController = async (req: Request, res: Response) => {
   try {
     const noteService: NoteService = noteServiceFactory();
     const noteCreator: NoteCreator = new NoteCreator(noteService);
-    const { title, body } = req.body;
+    const { contactId, title, body } = req.body;
     const response = await noteCreator.execute({
-      contactId: req.session.user!._id,
+      contactId,
       title,
       body,
     });

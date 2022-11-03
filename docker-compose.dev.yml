@@ -12,5 +12,5 @@ services:
       - NODE_ENV=Development
       - MONGO_USER=Piero95
       - MONGO_PASSWORD=j95p250a
-      - SESSION_SECRET=top-secret
+      - TOKEN_SECRET=top-secret
     command: yarn run dev
