@@ -1,12 +1,12 @@
-import { ContactService } from "../../features/contacts/domain/services/contact_service";
-import { MongoContactRepository } from "../../features/contacts/infrastructure/repository_implementation/mongo_contact_repository";
+import { UserService } from "../../features/users/domain/services/user_service";
+import { MongoUserRepository } from "../../features/users/infrastructure/repository_implementation/mongo_user_repository";
 import { NoteService } from "../../features/notes/domain/services/note_service";
 import { MongoNoteRepository } from "../../features/notes/infrastructure/repository_implementation/mongo_note_repository";
 
-export const contactServiceFactory = (): ContactService => {
-  const contactRepository = new MongoContactRepository();
-  const contactService = new ContactService(contactRepository);
-  return contactService;
+export const userServiceFactory = (): UserService => {
+  const userRepository = new MongoUserRepository();
+  const userService = new UserService(userRepository);
+  return userService;
 };
 
 export const noteServiceFactory = (): NoteService => {

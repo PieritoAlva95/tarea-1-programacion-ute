@@ -4,14 +4,14 @@ import { NoteFinderByContactId } from "../../application/use_cases/note_finder_b
 import { NoteService } from "../../domain/services/note_service";
 
 export const findNotesByContactIdController = async (
-  req: Request,
+  req: any,
   res: Response
 ) => {
   try {
     const noteService: NoteService = noteServiceFactory();
     const noteFinderByContactId: NoteFinderByContactId =
       new NoteFinderByContactId(noteService);
-    const contactId = req.query.contactId!;
+    const contactId = req.contactId;
     const response = await noteFinderByContactId.execute(contactId.toString());
     if (response.length === 0) {
       res.status(404).json({

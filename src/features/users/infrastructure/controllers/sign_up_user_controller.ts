@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
-import { contactServiceFactory } from "../../../../core/dependecy_injection/service_factory";
-import { ContactCreator } from "../../application/use_cases/contact_creator";
-import { ContactService } from "../../domain/services/contact_service";
+import { userServiceFactory } from "../../../../core/dependecy_injection/service_factory";
+import { UserCreator } from "../../application/use_cases/user_creator";
+import { UserService } from "../../domain/services/user_service";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { env_vars } from "../../../../core/config/env_vars";
 
-export const createContactController = async (req: Request, res: Response) => {
+export const signUpUserController = async (req: Request, res: Response) => {
   try {
-    const contactService: ContactService = contactServiceFactory();
-    const contactCreator = new ContactCreator(contactService);
+    const userService: UserService = userServiceFactory();
+    const userCreator = new UserCreator(userService);
     const { names, lastNames, phoneNumber, email, password } = req.body;
     const hashPassword = await bcrypt.hash(password, 12);
-    const response = await contactCreator.execute({
+    const response = await userCreator.execute({
       names,
       lastNames,
       phoneNumber,

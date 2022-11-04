@@ -10,7 +10,7 @@ import { updateNoteController } from "../controllers/update_note_controller";
 const router = Router();
 
 router.post("/notes", protect, createNoteController);
-router.get("/notes", findNoteListController);
+router.get("/notes", protect, findNoteListController);
 router.get("/notes/:id", protect, getNoteController);
 router.get("/contact-notes", protect, findNotesByContactIdController);
 router.put("/notes/:id", protect, updateNoteController);

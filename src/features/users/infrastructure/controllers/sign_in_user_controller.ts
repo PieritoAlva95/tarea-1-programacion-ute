@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import { contactServiceFactory } from "../../../../core/dependecy_injection/service_factory";
-import { ContactSignIn } from "../../application/use_cases/contact_sign_in";
-import { ContactService } from "../../domain/services/contact_service";
+import { userServiceFactory } from "../../../../core/dependecy_injection/service_factory";
+import { UserSignIn } from "../../application/use_cases/user_sign_in";
+import { UserService } from "../../domain/services/user_service";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { env_vars } from "../../../../core/config/env_vars";
 
-export const signInContactController = async (req: Request, res: Response) => {
+export const signInUserController = async (req: Request, res: Response) => {
   try {
-    const contactService: ContactService = contactServiceFactory();
-    const contactSignIn: ContactSignIn = new ContactSignIn(contactService);
+    const userService: UserService = userServiceFactory();
+    const userSignIn: UserSignIn = new UserSignIn(userService);
     const { email, password } = req.body;
-    const response = await contactSignIn.execute(email);
+    const response = await userSignIn.execute(email);
     if (!response) {
       res.status(404).json({
         status: "Fail",

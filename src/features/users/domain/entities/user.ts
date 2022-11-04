@@ -1,4 +1,4 @@
-interface ContactEntitiy {
+interface UserEntitiy {
   names: string;
   lastNames: string;
   phoneNumber: string;
@@ -6,20 +6,14 @@ interface ContactEntitiy {
   password: string;
 }
 
-export class Contact implements ContactEntitiy {
+export class User implements UserEntitiy {
   names: string;
   lastNames: string;
   phoneNumber: string;
   email: string;
   password: string;
 
-  constructor({
-    names,
-    lastNames,
-    phoneNumber,
-    email,
-    password,
-  }: ContactEntitiy) {
+  constructor({ names, lastNames, phoneNumber, email, password }: UserEntitiy) {
     this.names = names;
     this.lastNames = lastNames;
     this.phoneNumber = phoneNumber;
