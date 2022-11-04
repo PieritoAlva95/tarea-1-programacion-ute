@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import userRouter from "./features/users/infrastructure/routes/user_routes";
+import contactRouter from "./features/contacts/infrastructure/routes/contact_routes";
 import noteRouter from "./features/notes/infrastructure/routes/note_routes";
 import { initMongoDataBase } from "./core/database/mongo-db";
 import { env_vars } from "./core/config/env_vars";
@@ -16,6 +17,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/v1", userRouter);
+app.use("/api/v1", contactRouter);
 app.use("/api/v1", noteRouter);
 
 // Init Server

@@ -25,7 +25,7 @@ export const signUpUserController = async (req: Request, res: Response) => {
       token: tokenCreated,
     });
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       status: "Fail",
       error_msg: error,
     });

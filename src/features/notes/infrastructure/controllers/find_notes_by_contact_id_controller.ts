@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { noteServiceFactory } from "../../../../core/dependecy_injection/service_factory";
 import { NoteFinderByContactId } from "../../application/use_cases/note_finder_by_contact_id";
 import { NoteService } from "../../domain/services/note_service";
