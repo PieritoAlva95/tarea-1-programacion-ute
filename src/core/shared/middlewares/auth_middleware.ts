@@ -26,6 +26,6 @@ export const protect = (req: any, res: Response, next: NextFunction) => {
     });
     return;
   }
-  req.contactId = data.response._id;
+  req.userId = data.response._id;
   next();
 };

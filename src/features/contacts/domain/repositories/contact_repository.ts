@@ -1,9 +1,10 @@
 import { Contact } from "../entities/contact";
 
 export interface ContactRepository {
-  create(contact: Contact): Promise<Contact>;
-  get(uuid: string): Promise<Contact>;
-  update(uuid: string, contact: Contact): Promise<Contact>;
-  delete(uuid: string): Promise<boolean>;
-  find(): Promise<Contact[]>;
+  createContact(contact: Contact): Promise<Contact>;
+  getContact(uuid: string): Promise<Contact>;
+  updateContact(uuid: string, contact: Contact): Promise<Contact>;
+  deleteContact(uuid: string): Promise<boolean>;
+  findUserContacts(userId: string): Promise<Contact[]>;
+  findContact(): Promise<Contact[]>;
 }

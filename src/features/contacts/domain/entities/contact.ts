@@ -1,4 +1,5 @@
 interface ContactEntity {
+  userId: string;
   names: string;
   lastNames: string;
   phoneNumber: string;
@@ -6,15 +7,17 @@ interface ContactEntity {
 }
 
 export class Contact implements ContactEntity {
+  userId: string;
   names: string;
   lastNames: string;
   phoneNumber: string;
   email: string;
 
-  constructor({ names, lastNames, phoneNumber, email }: ContactEntity) {
+  constructor({ userId, names, lastNames, phoneNumber, email }: ContactEntity) {
+    this.userId = userId;
     this.names = names;
     this.lastNames = lastNames;
     this.phoneNumber = phoneNumber;
-    this.email = phoneNumber;
+    this.email = email;
   }
 }

@@ -9,7 +9,7 @@ export const createNoteController = async (req: any, res: Response) => {
     const noteCreator: NoteCreator = new NoteCreator(noteService);
     const { title, body } = req.body;
     const response = await noteCreator.execute({
-      contactId: req.contactId,
+      userId: req.userId,
       title,
       body,
     });

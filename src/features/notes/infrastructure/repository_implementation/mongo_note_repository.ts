@@ -25,8 +25,8 @@ export class MongoNoteRepository implements NoteRepository {
     return isNoteDeleted;
   };
 
-  public findNotesByContactId = async (uuid: string): Promise<any> => {
-    const noteList = await NoteModel.find({ contactId: uuid }).sort({
+  public findNotesByUserId = async (uuid: string): Promise<any> => {
+    const noteList = await NoteModel.find({ userId: uuid }).sort({
       createdAt: -1,
     });
     return noteList;

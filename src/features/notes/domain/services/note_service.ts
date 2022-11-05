@@ -34,7 +34,7 @@ export class NoteService {
 
   findNotesByContactId(uuid: string): Promise<Note[]> {
     const notesListFinded: Promise<Note[]> =
-      this.noteRepository.findNotesByContactId(uuid);
+      this.noteRepository.findNotesByUserId(uuid);
     return notesListFinded;
   }
 

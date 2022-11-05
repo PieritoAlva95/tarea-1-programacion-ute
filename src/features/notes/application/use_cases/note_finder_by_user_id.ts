@@ -1,7 +1,7 @@
 import { Note } from "../../domain/entities/note";
 import { NoteService } from "../../domain/services/note_service";
 
-export class NoteFinderByContactId {
+export class NoteFinderByUserId {
   noteService: NoteService;
 
   constructor(noteService: NoteService) {

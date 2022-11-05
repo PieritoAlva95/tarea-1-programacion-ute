@@ -11,19 +11,19 @@ export const findNoteListController = async (_: Request, res: Response) => {
     if (response.length === 0) {
       res.status(404).json({
         status: "Fail",
-        errorMsg: "There are no notes recorded!",
+        error_msg: "There are no notes recorded!",
       });
       return;
     }
     res.status(200).json({
       status: "Succes",
-      listLength: response.length,
-      noteListFinded: response,
+      list_length: response.length,
+      note_list_finded: response,
     });
   } catch (error) {
     res.status(400).json({
       status: "Fail",
-      errorMsg: error,
+      error_msg: error,
     });
   }
 };

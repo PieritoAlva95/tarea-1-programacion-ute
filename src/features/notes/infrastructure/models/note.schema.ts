@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 const NoteSchema = new Schema(
   {
-    contactId: { type: Schema.Types.ObjectId, ref: "Contact" },
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
     title: { require: true, type: String },
     body: { require: true, type: String },
   },
