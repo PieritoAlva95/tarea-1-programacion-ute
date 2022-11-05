@@ -1,5 +1,8 @@
 version: "3"
 services:
+  nginx:
+    ports:
+      - "80:80"
   notes-app-container:
     build:
       context: .
@@ -7,4 +10,11 @@ services:
         NODE_ENV: production
     environment:
       - NODE_ENV=Production
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - TOKEN_SECRET=${TOKEN_SECRET}
     command: yarn run start
+  mongo-container:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}

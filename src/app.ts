@@ -11,6 +11,7 @@ import { env_vars } from "./core/config/env_vars";
 const app = express();
 
 // Middlewares
+app.enable("trust proxy");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
@@ -26,7 +27,7 @@ app.listen(env_vars.APP_PORT, () => {
 });
 
 // Health route
-app.get("/health", (_: Request, res: Response) => {
+app.get("/api/health", (_: Request, res: Response) => {
   res.status(200).json({
     status: "Succes",
     msg: "The server is running normally!",
